@@ -36,8 +36,10 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
       }
     };
 
-    fetchCards();
-  }, [currentPage]);
+    if (!searchTerm) {
+      fetchCards();
+    }
+  }, [currentPage, searchTerm]);
 
   useEffect(() => {
     if (searchTerm) {
