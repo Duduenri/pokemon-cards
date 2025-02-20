@@ -66,22 +66,29 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center">
-        <span>Loading</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 ml-2">
+      <div className="flex flex-col items-center justify-center mt-8">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 mb-4">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
+        <span>Loading</span>
       </div>
     );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="flex flex-col items-center justify-center mt-8">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 mb-4">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <span>{error}</span>
+      </div>
+    );
   }
 
   if (cards.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mt-8">
         <img src={searchErrorIcon} alt="No results" className="w-24 h-24 mb-4" />
         <span>We couldn't find any Pokémon cards with that name... try again!</span>
       </div>
