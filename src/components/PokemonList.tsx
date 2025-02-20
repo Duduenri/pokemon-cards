@@ -16,17 +16,13 @@ const PokemonList: React.FC = () => {
 
   useEffect(() => {
     const fetchCards = async () => {
-      console.log('Fetching cards...');
       try {
         const response = await fetch('https://api.pokemontcg.io/v2/cards?pageSize=10');
         const data = await response.json();
-        console.log('Fetched data:', data);
         setCards(data.data);
       } catch (err) {
-        console.error('Error fetching cards:', err);
         setError('Failed');
       } finally {
-        console.log('Fetch complete');
         setLoading(false);
       }
     };
