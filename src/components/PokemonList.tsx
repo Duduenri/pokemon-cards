@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from './Pagination';
+import searchErrorIcon from '../assets/search_error.svg';
 
 interface PokemonCard {
   id: string;
@@ -76,6 +77,15 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
   if (error) {
     return <div>{error}</div>;
+  }
+
+  if (cards.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <img src={searchErrorIcon} alt="No results" className="w-24 h-24 mb-4" />
+        <span>We couldn't find any Pokémon cards with that name... try again!</span>
+      </div>
+    );
   }
 
   return (
