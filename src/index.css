@@ -28,9 +28,21 @@ body {
   margin: 0;
   padding-top: 4rem; /* Adicionar padding para evitar sobreposição do nav */
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden; /* Adicionar para remover a borda branca na esquerda */
+  box-sizing: border-box; /* Adicionar para garantir que o padding e a borda sejam incluídos nas dimensões totais */
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -132,7 +144,7 @@ button:focus-visible {
     top: 4rem;
     left: 0;
     width: 100%;
-    background-color: #242424;
+    background-color: #242424; /* Change this to match the header color */
   }
   nav.block ul li {
     margin: 1rem 0;

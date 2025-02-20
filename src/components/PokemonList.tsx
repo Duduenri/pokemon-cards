@@ -39,7 +39,7 @@ const PokemonList: React.FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-center items-center">
       {cards.map(card => (
         <div key={card.id} className="bg-white rounded shadow p-4">
           <img src={card.images.small} alt={card.name} className="w-full h-auto" />
