@@ -10,7 +10,11 @@ interface PokemonCard {
   };
 }
 
-const PokemonList: React.FC = () => {
+interface PokemonListProps {
+  searchTerm: string;
+}
+
+const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,6 +38,24 @@ const PokemonList: React.FC = () => {
 
     fetchCards();
   }, [currentPage]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const fetchAllCards = async () => {
+        try {
+          const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*`);
+          const data = await response.json();
+          setCards(data.data);
+        } catch (err) {
+          setError('Failed to fetch cards');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchAllCards();
+    }
+  }, [searchTerm]);
 
   if (loading) {
     return <div>Loading...</div>;

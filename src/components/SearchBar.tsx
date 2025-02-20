@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  setSearchTerm: (term: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ setSearchTerm }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setSearchTerm(inputValue);
+    }, 2000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [inputValue, setSearchTerm]);
+
   return (
     <div className="flex justify-center mt-4 w-full">
       <div className="relative w-full max-w-md">
         <input
           type="text"
-          placeholder="Search for a card..."
+          placeholder="Search for a Pokémon card..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
           className="w-full p-2 pl-10 rounded-full bg-gray-700 text-white focus:outline-none"
         />
         <svg
