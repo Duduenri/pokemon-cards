@@ -43,6 +43,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
   useEffect(() => {
     if (searchTerm) {
+      setCurrentPage(1); // Reset to first page when searching
       const fetchAllCards = async () => {
         try {
           const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*&pageSize=${cardsPerPage}&page=${currentPage}`);
