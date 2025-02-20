@@ -43,9 +43,10 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
     if (searchTerm) {
       const fetchAllCards = async () => {
         try {
-          const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*`);
+          const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*&pageSize=${cardsPerPage}&page=${currentPage}`);
           const data = await response.json();
           setCards(data.data);
+          setTotalPages(Math.ceil(data.totalCount / cardsPerPage));
         } catch (err) {
           setError('Failed to fetch cards');
         } finally {
@@ -55,7 +56,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
       fetchAllCards();
     }
-  }, [searchTerm]);
+  }, [searchTerm, currentPage]);
 
   if (loading) {
     return <div>Loading...</div>;
