@@ -24,6 +24,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
   useEffect(() => {
     const fetchCards = async () => {
+      setLoading(true); // Ensure loading state is set to true before fetching
       try {
         const response = await fetch(`https://api.pokemontcg.io/v2/cards?pageSize=${cardsPerPage}&page=${currentPage}`);
         const data = await response.json();
@@ -45,6 +46,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
     if (searchTerm) {
       setCurrentPage(1); // Reset to first page when searching
       const fetchAllCards = async () => {
+        setLoading(true); // State is set to true before fetching
         try {
           const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*&pageSize=${cardsPerPage}&page=${currentPage}`);
           const data = await response.json();
@@ -62,7 +64,14 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
   }, [searchTerm, currentPage]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center">
+        <span>Loading</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 ml-2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+      </div>
+    );
   }
 
   if (error) {
