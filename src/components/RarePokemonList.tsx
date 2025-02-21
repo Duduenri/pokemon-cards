@@ -85,13 +85,19 @@ const RarePokemonList: React.FC<RarePokemonListProps> = ({ searchTerm }) => {
           .font-prompt {
             font-family: 'Prompt', sans-serif;
           }
+          .card-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.875rem; /* Ajuste do tamanho da fonte */
+          }
         `}
       </style>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-center items-center">
         {cards.map(card => (
           <div key={card.id} className="bg-gray-800 rounded shadow p-4">
             <img src={card.images.small} alt={card.name} className="w-full h-auto" />
-            <h2 className="text-center mt-2 bg-[#2E8B57] rounded-lg p-1 max-w-xs mx-auto w-3/4 font-prompt text-white">{card.name}</h2>
+            <h2 className="text-center mt-2 bg-[#2E8B57] rounded-lg p-1 max-w-xs mx-auto w-3/4 font-prompt text-white card-title">{card.name}</h2>
           </div>
         ))}
       </div>
