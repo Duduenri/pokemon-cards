@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from './Pagination';
-import searchErrorIcon from '../assets/search_error.svg';
+import searchErrorIcon from '../assets/search-error.svg';
 
 interface PokemonCard {
   id: string;

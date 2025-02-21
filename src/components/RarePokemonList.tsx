@@ -11,7 +11,11 @@ interface PokemonCard {
   };
 }
 
-const RarePokemonList: React.FC = () => {
+interface RarePokemonListProps {
+  searchTerm: string;
+}
+
+const RarePokemonList: React.FC<RarePokemonListProps> = ({ searchTerm }) => {
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +27,7 @@ const RarePokemonList: React.FC = () => {
     const fetchRareCards = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=rarity:"Rare Rainbow"&pageSize=${cardsPerPage}&page=${currentPage}`);
+        const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=rarity:"Rare Rainbow"${searchTerm ? ` name:${searchTerm}*` : ''}&pageSize=${cardsPerPage}&page=${currentPage}`);
         const data = await response.json();
         if (data.data) {
           setCards(data.data);
@@ -40,7 +44,7 @@ const RarePokemonList: React.FC = () => {
     };
 
     fetchRareCards();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   if (loading) {
     return (
