@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import pokedexIcon from '../assets/pokeball-icon.svg';
+import NavigationMenu from './NavigationMenu';
 
 interface HeaderProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,13 +21,7 @@ const Header: React.FC<HeaderProps> = ({ setMenuOpen }) => {
         <img src={pokedexIcon} alt="Pokedex Icon" className="h-8 w-8 mr-2" />
         <span className="text-xl font-bold">Pokedex</span>
       </div>
-      <nav className={`${menuOpen ? 'block bg-gray-700' : 'hidden'} md:flex bg-gray-800 md:bg-transparent`}>
-        <ul className="flex space-x-4 md:flex-row md:space-x-4 md:space-y-0 flex-col space-y-4">
-          <li><a href="#" className="hover:text-gray-400">All Cards</a></li>
-          <li><a href="#" className="hover:text-gray-400">Promo Cards</a></li>
-          <li><a href="#" className="hover:text-gray-400">Secret/Rare Cards</a></li>
-        </ul>
-      </nav>
+      <NavigationMenu menuOpen={menuOpen} />
       <div className="md:hidden">
         <button onClick={toggleMenu} className={`text-white focus:outline-none ${menuOpen ? 'bg-gray-700' : ''}`}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="w-6 h-6">
