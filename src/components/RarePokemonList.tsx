@@ -24,6 +24,10 @@ const RarePokemonList: React.FC<RarePokemonListProps> = ({ searchTerm }) => {
   const cardsPerPage = 12;
 
   useEffect(() => {
+    setCurrentPage(1); // Reset to first page
+  }, [searchTerm]);
+
+  useEffect(() => {
     const fetchRareCards = async () => {
       setLoading(true);
       try {
