@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Pokémon Cards Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido como parte de um desafio técnico para uma vaga de desenvolvedor front-end. O objetivo é criar uma página que lista cartas de Pokémon com paginação e permite a busca por nome.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **ReactJS**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **TailwindCSS**: Framework de CSS para estilização.
+- **Vite**: Ferramenta de build rápida para projetos front-end.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Listagem de Cartas de Pokémon**: Exibe uma lista de cartas com imagem e nome, com responsividade para mobile.
+- **Pesquisa por Nome**: Campo de pesquisa para buscar cartas por nome, com debounce de 2 segundos.
+- **Paginação**: Navegação entre páginas de resultados.
+- **Pesquisa de Cartas Raras**: Página dedicada para pesquisar apenas cartas raras.
 
-- Configure the top-level `parserOptions` property like this:
+## Como Executar o Projeto
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/seu-usuario/pokemon-cards.git
+   cd pokemon-cards
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Instale as dependências**:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Execute o projeto**:
+   ```bash
+   npm run dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+4. **Abra o navegador** e acesse:
+   ```
+   http://localhost:3000
+   ```
+
+## Decisões Técnicas
+
+- **ReactJS com TypeScript**: Escolhi ReactJS pela sua popularidade e facilidade de uso. TypeScript foi utilizado para garantir maior segurança e qualidade no código.
+- **TailwindCSS**: Utilizado para estilização rápida e eficiente, permitindo um design responsivo sem a necessidade de escrever muito CSS.
+- **Vite**: Ferramenta de build escolhida pela sua rapidez e simplicidade na configuração de projetos React.
+- **Debounce na Pesquisa**: Implementado um debounce de 2 segundos no componente `SearchBar` para otimizar as buscas e evitar requisições excessivas à API.
+- **Paginação**: A paginação foi implementada nos componentes `PokemonList` e `RarePokemonList` para melhorar a experiência do usuário ao navegar por muitas cartas.
+- **Componentização**: A aplicação foi dividida em componentes reutilizáveis como `SearchBar`, `Pagination`, `PokemonList`, `RarePokemonList` e `NavigationMenu` para facilitar a manutenção e a escalabilidade do projeto.
+- **Fetch API**: Utilizada para realizar requisições à API do Pokémon TCG, com tratamento de erros e estados de carregamento para melhorar a robustez da aplicação.
+- **React Router**: Utilizado para navegação entre páginas, permitindo a criação de rotas para listar todas as cartas e para listar apenas cartas raras.
+
+## Estrutura do Projeto
+
+- **src/components**: Contém todos os componentes React utilizados no projeto.
+- **src/assets**: Contém os arquivos de imagem e outros recursos estáticos.
+- **src/App.tsx**: Componente principal que renderiza a aplicação.
+
