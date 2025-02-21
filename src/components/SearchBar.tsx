@@ -16,7 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setSearchTerm }) => {
   }, [inputValue, setSearchTerm]);
 
   return (
-    <div className="flex justify-center mt-4 w-full">
+    <div className="flex justify-center mt-1 w-full"> {}
       <div className="relative w-full max-w-md">
         <input
           type="text"
