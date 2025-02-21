@@ -26,15 +26,15 @@ a:hover {
 
 body {
   margin: 0;
-  padding-top: 4rem; /* Adicionar padding para evitar sobreposição do nav */
+  padding-top: 4rem; 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden; /* Adicionar para remover a borda branca na esquerda */
-  box-sizing: border-box; /* Adicionar para garantir que o padding e a borda sejam incluídos nas dimensões totais */
+  overflow-x: hidden; 
+  box-sizing: border-box;
 }
 
 #root {
@@ -144,7 +144,7 @@ button:focus-visible {
     top: 4rem;
     left: 0;
     width: 100%;
-    background-color: #242424; /* Change this to match the header color */
+    background-color: #242424; 
   }
   nav.block ul li {
     margin: 1rem 0;

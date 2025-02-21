@@ -97,11 +97,19 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
 
   return (
     <div className="flex flex-col items-center">
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+          .card-name {
+            font-family: 'Prompt', sans-serif;
+          }
+        `}
+      </style>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-center items-center">
         {cards.map(card => (
-          <div key={card.id} className="bg-white rounded shadow p-4">
+          <div key={card.id} className="bg-[#B22222] rounded shadow p-4">
             <img src={card.images.small} alt={card.name} className="w-full h-auto" />
-            <h2 className="text-center mt-2">{card.name}</h2>
+            <h2 className="text-center mt-2 bg-[#2E8B57] rounded-lg p-1 max-w-xs mx-auto w-3/4 card-name">{card.name}</h2>
           </div>
         ))}
       </div>
