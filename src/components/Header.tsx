@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ setMenuOpen }) => {
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center fixed top-0 w-full z-10">
       <div className="flex items-center">
         <img src={pokedexIcon} alt="Pokedex Icon" className="h-8 w-8 mr-2" />
-        <span className="text-xl font-bold">Pokedex</span>
+        <span className="text-xl font-bold">PokeCards</span>
       </div>
       <NavigationMenu menuOpen={menuOpen} />
       <div className="md:hidden">
