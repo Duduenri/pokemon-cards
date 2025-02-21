@@ -20,7 +20,7 @@ Este projeto foi desenvolvido como parte de um desafio técnico para uma vaga de
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/seu-usuario/pokemon-cards.git
+   git clone git@github.com:Duduenri/pokemon-cards.git
    cd pokemon-cards
    ```
 
