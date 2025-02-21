@@ -24,13 +24,22 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
   const cardsPerPage = 12;
 
   useEffect(() => {
+    setCurrentPage(1); // Reset to first page
+  }, [searchTerm]);
+
+  useEffect(() => {
     const fetchCards = async () => {
-      setLoading(true); 
+      setLoading(true);
       try {
-        const response = await fetch(`https://api.pokemontcg.io/v2/cards?pageSize=${cardsPerPage}&page=${currentPage}`);
+        const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=${searchTerm ? `name:${searchTerm}*` : ''}&pageSize=${cardsPerPage}&page=${currentPage}`);
         const data = await response.json();
-        setCards(data.data);
-        setTotalPages(Math.ceil(data.totalCount / cardsPerPage));
+        if (data.data) {
+          setCards(data.data);
+          setTotalPages(Math.ceil(data.totalCount / cardsPerPage));
+        } else {
+          setCards([]);
+          setTotalPages(1);
+        }
       } catch (err) {
         setError('Failed to fetch cards');
       } finally {
@@ -38,31 +47,8 @@ const PokemonList: React.FC<PokemonListProps> = ({ searchTerm }) => {
       }
     };
 
-    if (!searchTerm) {
-      fetchCards();
-    }
+    fetchCards();
   }, [currentPage, searchTerm]);
-
-  useEffect(() => {
-    if (searchTerm) {
-      setCurrentPage(1); // Reset to first page when searching
-      const fetchAllCards = async () => {
-        setLoading(true); // State is set to true before fetching
-        try {
-          const response = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}*&pageSize=${cardsPerPage}&page=${currentPage}`);
-          const data = await response.json();
-          setCards(data.data);
-          setTotalPages(Math.ceil(data.totalCount / cardsPerPage));
-        } catch (err) {
-          setError('Failed to fetch cards');
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchAllCards();
-    }
-  }, [searchTerm, currentPage]);
 
   if (loading) {
     return (
